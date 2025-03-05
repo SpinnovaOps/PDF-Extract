@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    .bg { fill: #ecf0f1; }
+    .brain { fill: #9b59b6; }
+    .text { fill: #2c3e50; }
+    .connection { stroke: #3498db; stroke-width: 2; fill: none; }
+  </style>
+  <circle class="bg" cx="50" cy="50" r="45" />
+  <path class="brain" d="M50,25 C65,25 65,40 50,40 C35,40 35,55 50,55 C65,55 65,70 50,70 C35,70 35,55 50,55 C65,55 65,40 50,40 C35,40 35,25 50,25 Z" />
+  <rect class="text" x="20" y="35" width="15" height="5" rx="2" />
+  <rect class="text" x="20" y="45" width="15" height="5" rx="2" />
+  <rect class="text" x="20" y="55" width="15" height="5" rx="2" />
+  <rect class="text" x="65" y="35" width="15" height="5" rx="2" />
+  <rect class="text" x="65" y="45" width="15" height="5" rx="2" />
+  <rect class="text" x="65" y="55" width="15" height="5" rx="2" />
+  <path class="connection" d="M35,37.5 C40,37.5 45,30 50,30" />
+  <path class="connection" d="M35,47.5 C40,47.5 45,50 50,50" />
+  <path class="connection" d="M35,57.5 C40,57.5 45,70 50,70" />
+  <path class="connection" d="M65,37.5 C60,37.5 55,30 50,30" />
+  <path class="connection" d="M65,47.5 C60,47.5 55,50 50,50" />
+  <path class="connection" d="M65,57.5 C60,57.5 55,70 50,70" />
+</svg>

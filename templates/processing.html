@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Processing Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/processing.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Financial Document Text Processing</h1>
+            <button id="back-to-dashboard" class="btn btn-outline">Back to Dashboard</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="alert-container"></div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Select Document and Section</h2>
+            </div>
+            <div class="form-group">
+                <label for="document-select">Select Document:</label>
+                <select id="document-select" class="form-control">
+                    <option value="">Loading documents...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="section-select">Select Section:</label>
+                <select id="section-select" class="form-control">
+                    <option value="">Select a document first</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button id="process-all-btn" class="btn btn-success btn-block">Run Complete Analysis</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Processing Steps</h2>
+            </div>
+            <div class="processing-steps">
+                <div class="step-card">
+                    <h3>Segmentation</h3>
+                    <p>Split text into sentences</p>
+                    <button class="btn btn-primary" data-process="segmentation">Process</button>
+                </div>
+                <div class="step-card">
+                    <h3>Tokenization</h3>
+                    <p>Split sentences into words</p>
+                    <button class="btn btn-primary" data-process="tokenization">Process</button>
+                </div>
+                <div class="step-card">
+                    <h3>Stopwords Removal</h3>
+                    <p>Remove common words</p>
+                    <button class="btn btn-primary" data-process="stopwords">Process</button>
+                </div>
+                <div class="step-card">
+                    <h3>Lemmatization</h3>
+                    <p>Convert words to base form</p>
+                    <button class="btn btn-primary" data-process="lemmatization">Process</button>
+                </div>
+                <div class="step-card">
+                    <h3>Stemming</h3>
+                    <p>Reduce words to their stems</p>
+                    <button class="btn btn-primary" data-process="stemming">Process</button>
+                </div>
+                <div class="step-card">
+                    <h3>POS Tagging</h3>
+                    <p>Tag parts of speech</p>
+                    <button class="btn btn-primary" data-process="pos_tagging">Process</button>
+                </div>
+                <div class="step-card">
+                    <h3>Named Entity Recognition</h3>
+                    <p>Identify named entities</p>
+                    <button class="btn btn-primary" data-process="ne_tagging">Process</button>
+                </div>
+                <div class="step-card">
+                    <h3>Sentiment Analysis</h3>
+                    <p>Analyze text sentiment</p>
+                    <button class="btn btn-primary" data-process="sentiment_analysis">Process</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Processing... Please wait</p>
+        </div>
+
+        <div id="results-section" class="results-section hidden">
+            <h2>Processing Results</h2>
+            <p>Select a processing step to see results</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/processing.js') }}"></script>
+</body>
+</html>

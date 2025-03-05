@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
+  <style>
+    .document { fill: #ecf0f1; stroke: #bdc3c7; stroke-width: 2; }
+    .text-line { fill: #7f8c8d; }
+    .highlight { fill: #3498db; }
+    .chart { fill: #2ecc71; }
+    .chart-line { stroke: #27ae60; stroke-width: 2; fill: none; }
+    .magnifier { fill: #f39c12; stroke: #e67e22; stroke-width: 2; }
+    .magnifier-handle { fill: #e67e22; }
+    .code { fill: #9b59b6; }
+  </style>
+  
+  <!-- Background Documents -->
+  <rect class="document" x="50" y="100" width="150" height="200" rx="5" />
+  <rect class="document" x="300" y="80" width="150" height="200" rx="5" />
+  <rect class="document" x="180" y="150" width="150" height="200" rx="5" />
+  
+  <!-- Document Content -->
+  <rect class="text-line" x="70" y="120" width="110" height="5" rx="2" />
+  <rect class="text-line" x="70" y="135" width="90" height="5" rx="2" />
+  <rect class="text-line" x="70" y="150" width="110" height="5" rx="2" />
+  <rect class="highlight" x="70" y="165" width="110" height="10" rx="2" />
+  <rect class="text-line" x="70" y="185" width="100" height="5" rx="2" />
+  <rect class="text-line" x="70" y="200" width="110" height="5" rx="2" />
+  <rect class="text-line" x="70" y="215" width="80" height="5" rx="2" />
+  <rect class="text-line" x="70" y="230" width="110" height="5" rx="2" />
+  <rect class="highlight" x="70" y="245" width="110" height="10" rx="2" />
+  <rect class="text-line" x="70" y="265" width="90" height="5" rx="2" />
+  
+  <!-- Chart in Document -->
+  <rect class="chart" x="320" y="110" width="110" height="80" rx="2" />
+  <polyline class="chart-line" points="330,170 350,140 370,160 390,120 410,130 430,100" />
+  <rect class="text-line" x="320" y="200" width="110" height="5" rx="2" />
+  <rect class="text-line" x="320" y="215" width="90" height="5" rx="2" />
+  <rect class="text-line" x="320" y="230" width="110" height="5" rx="2" />
+  <rect class="text-line" x="320" y="245" width="80" height="5" rx="2" />
+  
+  <!-- Code in Document -->
+  <rect class="code" x="200" y="170" width="110" height="60" rx="2" />
+  <rect class="text-line" x="200" y="240" width="110" height="5" rx="2" />
+  <rect class="text-line" x="200" y="255" width="90" height="5" rx="2" />
+  <rect class="text-line" x="200" y="270" width="110" height="5" rx="2" />
+  <rect class="text-line" x="200" y="285" width="80" height="5" rx="2" />
+  <rect class="text-line" x="200" y="300" width="110" height="5" rx="2" />
+  
+  <!-- Magnifying Glass -->
+  <circle class="magnifier" cx="250" cy="120" r="40" />
+  <rect class="magnifier-handle" x="280" y="150" width="30" height="10" rx="5" transform="rotate(45, 280, 150)" />
+</svg>

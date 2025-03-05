@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - FinDoc Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>FinDoc Analyzer</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#"><span class="icon">📊</span> Dashboard</a></li>
+                    <li><a href="#" id="upload-nav"><span class="icon">📁</span> Upload Documents</a></li>
+                    <li><a href="#" id="documents-nav"><span class="icon">📄</span> My Documents</a></li>
+                    <li><a href="/processing-dashboard"><span class="icon">⚙️</span> Text Processing</a></li>
+                    <li><a href="#" id="settings-nav"><span class="icon">⚙️</span> Settings</a></li>
+                    <li><a href="#" id="logout-btn"><span class="icon">🚪</span> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="user-info">
+                    <span class="welcome-message">Welcome, <span id="username">User</span></span>
+                </div>
+            </header>
+
+            <!-- Dashboard Overview Section -->
+            <section class="dashboard-section" id="dashboard-overview">
+                <div class="section-header">
+                    <h2>Dashboard Overview</h2>
+                </div>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">📄</div>
+                        <div class="stat-info">
+                            <h3>Documents</h3>
+                            <p class="stat-value" id="document-count">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <h3>Processed Sections</h3>
+                            <p class="stat-value" id="section-count">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-info">
+                            <h3>Analyses</h3>
+                            <p class="stat-value" id="analysis-count">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <div class="section-header">
+                        <h3>Recent Activity</h3>
+                    </div>
+                    <div class="activity-list" id="activity-list">
+                        <p class="no-activity">No recent activity</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upload Documents Section -->
+            <section class="dashboard-section hidden" id="upload-section">
+                <div class="section-header">
+                    <h2>Upload Documents</h2>
+                </div>
+                <div class="upload-container">
+                    <form id="upload-form" enctype="multipart/form-data">
+                        <div class="upload-area">
+                            <div class="upload-icon">📁</div>
+                            <p>Drag and drop your PDF file here or</p>
+                            <label for="file-input" class="btn btn-primary">Browse Files</label>
+                            <input type="file" id="file-input" name="file" accept=".pdf" hidden>
+                            <p class="file-name" id="file-name"></p>
+                        </div>
+                        <div class="upload-info">
+                            <h3>Upload Requirements</h3>
+                            <ul>
+                                <li>Only PDF files of 10-Q or 10-K SEC filings are supported</li>
+                                <li>Maximum file size: 20MB</li>
+                                <li>The system will automatically extract metadata from the document</li>
+                            </ul>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block" id="upload-btn" disabled>Upload Document</button>
+                    </form>
+                </div>
+                <div class="upload-status hidden" id="upload-status">
+                    <div class="status-icon success">✓</div>
+                    <h3>Upload Successful!</h3>
+                    <p>Your document has been uploaded and processed successfully.</p>
+                    <div class="document-info" id="document-info">
+                        <!-- Document info will be populated here -->
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="view-document-btn">View Document</button>
+                        <button class="btn btn-outline" id="upload-another-btn">Upload Another</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- My Documents Section -->
+            <section class="dashboard-section hidden" id="documents-section">
+                <div class="section-header">
+                    <h2>My Documents</h2>
+                </div>
+                <div class="documents-container">
+                    <div class="documents-filter">
+                        <input type="text" placeholder="Search documents..." class="search-input" id="document-search">
+                    </div>
+                    <div class="documents-list" id="documents-list">
+                        <!-- Documents will be populated here -->
+                        <p class="no-documents">No documents found</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Document View Section -->
+            <section class="dashboard-section hidden" id="document-view-section">
+                <div class="section-header">
+                    <h2>Document Details</h2>
+                    <button class="btn btn-outline" id="back-to-documents">Back to Documents</button>
+                </div>
+                <div class="document-details" id="document-details">
+                    <!-- Document details will be populated here -->
+                </div>
+                <div class="document-sections">
+                    <div class="section-header">
+                        <h3>Document Sections</h3>
+                    </div>
+                    <div class="sections-list" id="sections-list">
+                        <!-- Sections will be populated here -->
+                    </div>
+                </div>
+                <div class="section-content hidden" id="section-content">
+                    <div class="section-header">
+                        <h3 id="section-title">Section Content</h3>
+                        <button class="btn btn-primary" id="process-section-btn">Process This Section</button>
+                    </div>
+                    <div class="content-display" id="content-display">
+                        <!-- Section content will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="dashboard-section hidden" id="settings-section">
+                <div class="section-header">
+                    <h2>Account Settings</h2>
+                </div>
+                <div class="settings-container">
+                    <form id="settings-form">
+                        <div class="form-group">
+                            <label for="settings-username">Username</label>
+                            <input type="text" id="settings-username" name="username" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="settings-email">Email</label>
+                            <input type="email" id="settings-email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="settings-password">New Password</label>
+                            <input type="password" id="settings-password" name="password" placeholder="Leave blank to keep current password">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
